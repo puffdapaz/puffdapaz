@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro Silva · Portfolio BI & FP&A</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ============================= */
+/* RESET */
+/* ============================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+/* ============================= */
+/* VARIABLES */
+/* ============================= */
+
+:root{
+
+--bg-light:#dfede7;
+--surface:#ffffff;
+
+--text-primary:#1a2e2c;
+--text-secondary:#3e5a55;
+
+--accent:#206a5e;
+--accent-soft:#d5e7e2;
+
+--border-light:#c0d4cd;
+
+--shadow-sm:0 8px 20px -6px rgba(30,60,55,0.12);
+--shadow-hover:0 20px 30px -12px rgba(30,60,55,0.22);
+
+--font-head:'Outfit',sans-serif;
+--font-body:'Source Sans 3',sans-serif;
+
+--transition:all .3s cubic-bezier(.2,0,0,1);
+
+}
+
+/* ============================= */
+/* BASE */
+/* ============================= */
+
+body{
+background:var(--bg-light);
+color:var(--text-primary);
+font-family:var(--font-body);
+line-height:1.6;
+scroll-behavior:smooth;
+}
+
+/* accessibility */
+
+a:focus-visible,
+button:focus-visible{
+outline:2px solid var(--accent);
+outline-offset:2px;
+}
+
+/* ============================= */
+/* TYPOGRAPHY */
+/* ============================= */
+
+h1,h2,h3,h4,.nav-logo{
+font-family:var(--font-head);
+letter-spacing:-.02em;
+line-height:1.2;
+}
+
+h1{
+font-size:clamp(2.5rem,8vw,3.8rem);
+font-weight:600;
+letter-spacing:-.03em;
+}
+
+h2{
+font-size:2.2rem;
+margin-bottom:2rem;
+font-weight:500;
+}
+
+h2::after{
+content:"";
+display:block;
+width:60px;
+height:3px;
+background:var(--accent);
+margin-top:.5rem;
+border-radius:3px;
+}
+
+h3{
+font-size:1.4rem;
+font-weight:600;
+margin-bottom:.5rem;
+}
+
+.subhead{
+font-size:1.2rem;
+color:var(--text-secondary);
+}
+
+/* ============================= */
+/* LAYOUT */
+/* ============================= */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 2rem;
+}
+
+section{
+padding:clamp(4rem,8vw,6rem) 0;
+border-bottom:1px solid var(--border-light);
+}
+
+#home{
+padding-top:8rem;
+min-height:80vh;
+display:flex;
+align-items:center;
+border-bottom:none;
+}
+
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+
+.navbar{
+
+position:fixed;
+top:0;
+width:100%;
+
+padding:1rem 2rem;
+
+background:rgba(223,237,231,.75);
+backdrop-filter:blur(12px);
+
+border-bottom:1px solid var(--border-light);
+
+z-index:100;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+transition:var(--transition);
+}
+
+.nav-logo{
+font-size:1.5rem;
+text-decoration:none;
+color:var(--text-primary);
+border-bottom:2px solid transparent;
+}
+
+.nav-logo:hover{
+border-bottom-color:var(--accent);
+}
+
+.nav-links{
+display:flex;
+gap:2.5rem;
+}
+
+.nav-links a{
+
+text-decoration:none;
+color:var(--text-primary);
+font-weight:500;
+
+border-bottom:2px solid transparent;
+padding:.4rem 0;
+
+transition:var(--transition);
+}
+
+.nav-links a:hover{
+border-bottom-color:var(--accent);
+color:var(--accent);
+}
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+
+.btn-group{
+display:flex;
+flex-wrap:wrap;
+gap:1.2rem;
+margin-top:2.5rem;
+}
+
+.btn{
+
+padding:.8rem 2rem;
+border-radius:40px;
+
+font-weight:600;
+text-decoration:none;
+
+transition:var(--transition);
+
+border:1.5px solid transparent;
+
+font-family:var(--font-head);
+
+display:inline-flex;
+align-items:center;
+gap:.4rem;
+
+}
+
+.btn-primary{
+background:var(--accent);
+color:#fff;
+box-shadow:0 4px 10px rgba(32,106,94,.2);
+}
+
+.btn-primary:hover{
+background:#124f45;
+transform:translateY(-3px);
+box-shadow:0 12px 20px -10px var(--accent);
+}
+
+.btn-outline{
+border-color:var(--accent);
+color:var(--accent);
+}
+
+.btn-outline:hover{
+background:var(--accent);
+color:white;
+transform:translateY(-2px);
+}
+
+/* ============================= */
+/* PROJECT CARDS */
+/* ============================= */
+
+.project-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:2.5rem;
+margin-top:2rem;
+
+align-items:stretch;
+
+}
+
+.card{
+
+background:var(--surface);
+
+border-radius:28px;
+
+padding:2rem;
+
+border:1px solid var(--border-light);
+
+box-shadow:var(--shadow-sm);
+
+display:flex;
+flex-direction:column;
+
+transition:var(--transition);
+
+will-change:transform;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:var(--shadow-hover);
+
+border-color:var(--accent-soft);
+
+}
+
+.project-meta{
+display:flex;
+flex-wrap:wrap;
+gap:.8rem;
+margin:1rem 0 1.2rem;
+}
+
+.card-link{
+
+margin-top:auto;
+
+font-weight:600;
+
+color:var(--accent);
+
+text-decoration:none;
+
+border-bottom:2px solid transparent;
+
+transition:var(--transition);
+
+}
+
+.card-link:hover{
+border-bottom-color:var(--accent);
+}
+
+/* ============================= */
+/* BADGES */
+/* ============================= */
+
+.tech-tag{
+
+background:var(--accent-soft);
+color:var(--accent);
+
+font-size:.8rem;
+font-weight:600;
+
+padding:.3rem .9rem;
+
+border-radius:30px;
+
+text-transform:uppercase;
+
+}
+
+.lang-badge{
+background:transparent;
+border:1px solid var(--accent);
+color:var(--accent);
+}
+
+/* ============================= */
+/* TIMELINE */
+/* ============================= */
+
+.timeline{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:2.5rem;
+margin-top:2rem;
+
+}
+
+.timeline-item{
+
+background:var(--surface);
+
+padding:1.8rem 2rem;
+
+border-radius:20px;
+
+box-shadow:var(--shadow-sm);
+
+border-left:6px solid var(--accent);
+
+}
+
+.timeline-item h4{
+font-size:1.3rem;
+margin-bottom:.2rem;
+}
+
+.period{
+color:var(--text-secondary);
+font-size:.95rem;
+margin-bottom:.8rem;
+display:block;
+}
+
+/* ============================= */
+/* SKILLS */
+/* ============================= */
+
+.skills-pool{
+
+display:flex;
+flex-wrap:wrap;
+gap:.8rem;
+
+margin-top:1.5rem;
+
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+
+footer{
+
+padding:3rem 0 4rem;
+text-align:center;
+
+background:rgba(255,255,255,.35);
+
+color:var(--text-secondary);
+
+}
+
+.footer-links{
+display:flex;
+justify-content:center;
+gap:2rem;
+margin:2rem 0 1rem;
+}
+
+.footer-links a{
+text-decoration:none;
+color:var(--accent);
+border-bottom:2px solid transparent;
+}
+
+.footer-links a:hover{
+border-bottom-color:var(--accent);
+}
+
+/* ============================= */
+/* UTILITY CLASSES */
+/* ============================= */
+
+.text-measure{max-width:65ch;}
+.max-w-text{max-width:580px;}
+
+.mt-md{margin-top:1.5rem;}
+.mb-sm{margin-bottom:1rem;}
+
+.text-lg{font-size:1.2rem;}
+
+/* ============================= */
+/* FADE ANIMATION */
+/* ============================= */
+
+.fade-section{
+
+opacity:0;
+transform:translateY(24px);
+
+transition:opacity .7s ease, transform .7s ease;
+
+}
+
+.fade-section.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media(max-width:600px){
+
+.navbar{
+padding:.8rem 1.5rem;
+}
+
+.nav-links{
+gap:1.2rem;
+}
+
+}
+
+@media(max-width:500px){
+
+.container{
+padding:0 1.5rem;
+}
+
+.btn-group{
+flex-direction:column;
+align-items:stretch;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<a href="#home" class="nav-logo">· PS</a>
+
+<div class="nav-links">
+
+<a href="#sobre">Sobre</a>
+<a href="#projetos">Projetos</a>
+<a href="#experiencia">Experiência</a>
+
+</div>
+
+</nav>
+
+<main>
+
+<section id="home">
+
+<div class="container">
+
+<h1>Pedro Silva</h1>
+
+<p class="subhead">Consultor em FP&A, Controladoria & Dados</p>
+
+<p class="text-lg mt-md max-w-text text-measure">
+
+Modelagem financeira, análise de custos e eficiência, e arquitetura moderna de dados. 
+Transformo números em dados estratégicos para organizações.
+
+</p>
+
+<div class="btn-group">
+
+<a href="#projetos" class="btn btn-primary">⟶ Ver Projetos</a>
+
+<a href="https://www.linkedin.com/in/silvaph/" target="_blank"
+aria-label="Abrir LinkedIn de Pedro Silva"
+class="btn btn-outline">LinkedIn</a>
+
+<a href="https://github.com/puffdapaz" target="_blank"
+aria-label="Abrir GitHub de Pedro Silva"
+class="btn btn-outline">GitHub</a>
+
+</div>
+
+</div>
+</section>
+
+<section id="sobre" class="fade-section">
+
+<div class="container">
+
+<h2>Sobre mim</h2>
+
+<p class="text-lg text-measure mb-sm">
+
+Profissional de FP&A e Controladoria com mais de 8 anos de experiência em modelagem financeira,
+orçamento, forecast, gestão de custos, dashboards e relatórios gerenciais.
+Automação e otimização de processos financeiros e controles internos ponta a ponta,
+apoiando a tomada de decisão por meio de análises orientadas a dados.
+
+</p>
+
+<p class="text-measure">
+
+Desenvolvimento de projetos Lakehouse com arquitetura medallion,
+ETL em Python e dashboards interativos.
+
+</p>
+
+<h3 class="mt-md">Habilidades</h3>
+
+<div class="skills-pool">
+
+<span class="tech-tag">Python</span>
+<span class="tech-tag">Excel</span>
+<span class="tech-tag">Streamlit</span>
+<span class="tech-tag">Dados</span>
+<span class="tech-tag">Modelagem Financeira</span>
+<span class="tech-tag">SQL</span>
+<span class="tech-tag">Power BI</span>
+<span class="tech-tag">Controladoria</span>
+<span class="tech-tag">FP&A</span>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="projetos" class="fade-section">
+
+<div class="container">
+
+<h2>Projetos em dados</h2>
+
+<div class="project-grid">
+
+<article class="card">
+
+<h3>· IPEApython</h3>
+
+<p class="text-measure mb-sm">
+
+Arquitetura medallion aplicada a dados sociais dos municípios brasileiros,
+avaliando o impacto da receita tributária no desenvolvimento econômico e social. 
+ETL com Python, DuckDB e dashboard interativo em Streamlit para visualização de indicadores.
+
+</p>
+
+<div class="project-meta">
+
+<span class="tech-tag">Python</span>
+<span class="tech-tag">DuckDB</span>
+<span class="tech-tag lang-badge">Streamlit</span>
+<span class="tech-tag">R</span>
+<span class="tech-tag">Regressão OLS</span>
+<span class="tech-tag">ANOVA</span>
+<span class="tech-tag lang-badge">Medallion</span>
+
+</div>
+
+<a href="https://github.com/puffdapaz/IPEApython"
+target="_blank"
+aria-label="Abrir repositório IPEApython no GitHub"
+class="card-link">
+
+GitHub ↗
+
+</a>
+
+</article>
+
+<article class="card">
+
+<h3>· DEApython</h3>
+
+<p class="text-measure mb-sm">
+
+Análise Envoltória de Dados (DEA) para medir eficiência relativa
+técnica e de escala dos gastos públicos municipais em educação. 
+SQL via APIs, GCS para armazenagem, PostgreSQL alimentando Power BI.
+
+</p>
+
+<div class="project-meta">
+
+<span class="tech-tag">Python</span>
+<span class="tech-tag">SQL</span>
+<span class="tech-tag">API</span>
+<span class="tech-tag lang-badge">Lakehouse</span>
+<span class="tech-tag lang-badge">Power BI</span>
+<span class="tech-tag">OpenMetadata</span>
+
+</div>
+
+<a href="https://github.com/puffdapaz/DEApython"
+target="_blank"
+aria-label="Abrir repositório DEApython no GitHub"
+class="card-link">
+
+GitHub ↗
+
+</a>
+
+</article>
+
+</div>
+</div>
+
+</section>
+
+<section id="experiencia" class="fade-section">
+
+<div class="container">
+
+<h2>Experiência</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<h4>Consultor em Automação de FP&A e Controladoria</h4>
+
+<span class="period">Autônomo · desde 2024</span>
+
+<p>Automação de processos financeiros e otimização dos fluxos de reconciliação e validação de fechamento mensal, reduzindo o tempo de execução de 8 horas para 16 minutos.</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h4>Coordenador de Controladoria e FP&A</h4>
+
+<span class="period">Startup Farmaceutica · 2023</span>
+
+<p>Estabelecimento de procedimentos e políticas, gestão do fluxo de caixa, aprimoramento dos controles gerenciais, integração e automação dos dados do negócio e estabelecimento de indicadores.</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h4>Analista de FP&A e Controladoria</h4>
+
+<span class="period">Indústria de Construção Civil · 2022</span>
+
+<p>Reestruturação e automação dos fluxos de fechamento mensal, apresentações e projeções, melhorando a consistência e eficiência na consolidação.</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h4>Analista de Controladoria</h4>
+
+<span class="period">Indústria Química · 2017 – 2022</span>
+
+<p>Análises de variação, conciliações, cálculos de estoques, provisões, CAPEX, baixas, Royalties e capital de giro. Execução de análises de custos e margem por SKU, cliente e segmento. Construção, consolidação e acompanhamento de planejamento orçamentário.</p>
+
+</div>
+
+</div>
+
+<div class="mt-md">
+
+<h3>Idiomas</h3>
+
+<ul style="list-style:none">
+
+<li>🇧🇷 Português · nativo</li>
+<li>🇬🇧 Inglês · fluente</li>
+<li>🇪🇸 Espanhol · intermediário</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="fade-section">
+
+<div class="container">
+
+<h3 style="font-weight:400;font-size:1.8rem">Contato</h3>
+
+<div class="footer-links">
+
+<a href="https://www.linkedin.com/in/silvaph/" target="_blank">LinkedIn</a>
+<a href="https://github.com/puffdapaz" target="_blank">GitHub</a>
+<a href="mailto:silvapedro@outlook.com">📧 email</a>
+
+</div>
+
+<p class="text-measure mt-md">
+
+Performance em finanças, dados e tecnologia para decisões mais inteligentes.
+
+</p>
+
+<p style="margin-top:2rem;font-size:.9rem">© · 2026</p>
+
+</div>
+
+</footer>
+
+</main>
+
+<script>
+
+/* smooth scroll */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+anchor.addEventListener('click',function(e){
+
+const href=this.getAttribute('href');
+
+if(href==="#"||href==="")return;
+
+const target=document.querySelector(href);
+
+if(target){
+
+e.preventDefault();
+
+target.scrollIntoView({behavior:'smooth'});
+
+}
+
+});
+});
+
+/* fade in */
+
+const sections=document.querySelectorAll('.fade-section');
+
+const observer=new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add('visible');
+
+observer.unobserve(entry.target);
+
+}
+
+});
+
+},{threshold:.15,rootMargin:"0px 0px -30px 0px"});
+
+sections.forEach(s=>observer.observe(s));
+
+/* navbar compression */
+
+const nav=document.querySelector('.navbar');
+
+window.addEventListener('scroll',()=>{
+
+if(window.scrollY>20){
+
+nav.style.padding="0.7rem 2rem";
+
+}else{
+
+nav.style.padding="1rem 2rem";
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
