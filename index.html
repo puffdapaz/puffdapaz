@@ -304,20 +304,25 @@ gap:.8rem;
 margin:1rem 0 1.2rem;
 }
 
+/* New style for button group inside cards */
+.card .btn-group {
+    margin-top: 1.5rem;
+    gap: 0.8rem;
+}
+
+.card .btn{
+padding:.5rem 1.1rem;
+font-size:.9rem;
+white-space:nowrap; /* prevents ugly wrapping */
+}
+
 .card-link{
-
 margin-top:auto;
-
 font-weight:600;
-
 color:var(--accent);
-
 text-decoration:none;
-
 border-bottom:2px solid transparent;
-
 transition:var(--transition);
-
 }
 
 .card-link:hover{
@@ -498,6 +503,18 @@ flex-direction:column;
 align-items:stretch;
 }
 
+/* Stack buttons in cards on mobile */
+.card .btn-group {
+    flex-direction: column;
+    width: 100%;
+}
+
+.card .btn{
+padding:.5rem 1.1rem;
+font-size:.9rem;
+white-space:nowrap; /* prevents ugly wrapping */
+}
+
 }
 
 </style>
@@ -627,14 +644,21 @@ ETL com Python, DuckDB e dashboard interativo em Streamlit para visualização d
 
 </div>
 
-<a href="https://github.com/puffdapaz/IPEApython"
-target="_blank"
-aria-label="Abrir repositório IPEApython no GitHub"
-class="card-link">
-
-GitHub ↗
-
-</a>
+<!-- NEW: Button group with GitHub and App -->
+<div class="btn-group">
+    <a href="https://github.com/puffdapaz/IPEApython"
+       target="_blank"
+       aria-label="Abrir repositório IPEApython no GitHub"
+       class="btn btn-outline">
+        GitHub ↗
+    </a>
+    <a href="https://ipeapython.streamlit.app/"
+       target="_blank"
+       aria-label="Abrir aplicação IPEApython"
+       class="btn btn-primary">
+        Streamlit ↗
+    </a>
+</div>
 
 </article>
 
@@ -661,14 +685,21 @@ SQL via APIs, GCS para armazenagem, PostgreSQL alimentando Power BI.
 
 </div>
 
-<a href="https://github.com/puffdapaz/DEApython"
-target="_blank"
-aria-label="Abrir repositório DEApython no GitHub"
-class="card-link">
-
-GitHub ↗
-
-</a>
+<!-- NEW: Button group with GitHub and Power BI App -->
+<div class="btn-group">
+    <a href="https://github.com/puffdapaz/DEApython"
+       target="_blank"
+       aria-label="Abrir repositório DEApython no GitHub"
+       class="btn btn-outline">
+        GitHub ↗
+    </a>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiMmU1ZDJkYjItNTM2NS00ZWFiLWFhNTAtYzE5ZjRkZTBiZjcyIiwidCI6ImFlMTJhMzE4LWQxYjgtNGQ5My04NTBmLTQ3ZWFkMzYwMmM2NiJ9"
+       target="_blank"
+       aria-label="Abrir dashboard Power BI"
+       class="btn btn-primary">
+        Power BI ↗
+    </a>
+</div>
 
 </article>
 
